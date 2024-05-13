@@ -12,6 +12,8 @@ pubspec.lock
 doc/api/
 
 # dotenv environment variables file
+.git/
+.idea/
 .env*
 
 # Avoid committing generated Javascript files:
