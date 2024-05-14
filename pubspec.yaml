@@ -15,16 +15,21 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
+  cupertino_icons: ^1.0.6
+  cloud_firestore: ^4.15.10
+  firebase_auth: ^4.19.5
+  google_sign_in: ^6.2.1
+  provider: ^6.1.2
 
 dev_dependencies:
   flutter_lints: ^3.0.0
 
 flutter:
   uses-material-design: true
-
-  # Enable generation of localized Strings from arb files.
   generate: true
-
   assets:
-    # Add assets from the images directory to the application.
-    - assets/images/
+    - assets/images/logo.png
+  fonts:
+  - family: Grandstander
+    fonts: 
+    - asset: assets/fonts/Grandstander-ExtraBold.ttf
