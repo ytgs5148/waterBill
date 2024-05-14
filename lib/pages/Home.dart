@@ -32,10 +32,12 @@ class HomePage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          // Add your onPressed code here!
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            Navigator.pushNamed(context, '/create');
+          });
         },
         backgroundColor: Colors.blue,
-        child: const Icon(Icons.navigation),
+        child: const Icon(Icons.create),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );

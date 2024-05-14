@@ -56,24 +56,24 @@ class LoginPage extends StatelessWidget {
                         ),
                       ),
                       Container(
-                      padding: const EdgeInsets.fromLTRB(10, 60, 10, 10),
-                      child: FloatingActionButton.extended(
-                        onPressed: () {
-                          final provider =
-                              Provider.of<GoogleSignInProvider>(context, listen: false);
-                          provider.googleLogin();
-                        },
-                        label: const Text(
-                          'Login With Google',
-                          style: TextStyle(
-                            fontSize: 30,
+                        padding: const EdgeInsets.fromLTRB(10, 60, 10, 10),
+                        child: FloatingActionButton.extended(
+                          onPressed: () {
+                            final provider =
+                                Provider.of<GoogleSignInProvider>(context, listen: false);
+                            provider.googleLogin();
+                          },
+                          label: const Text(
+                            'Login With Google',
+                            style: TextStyle(
+                              fontSize: 30,
+                            ),
                           ),
+                          icon: const Icon(Icons.person),
+                          backgroundColor: Colors.blue[700],
+                          foregroundColor: Colors.white,
                         ),
-                        icon: const Icon(Icons.person),
-                        backgroundColor: Colors.blue[700],
-                        foregroundColor: Colors.white,
                       ),
-                    ),
                     ],
                   ),
               );

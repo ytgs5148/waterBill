@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:waterbill/pages/CreatePage.dart';
 import 'package:waterbill/pages/Home.dart';
 import 'package:waterbill/pages/LoginPage.dart';
 
@@ -11,6 +12,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const LoginPage());
       case '/home':
         return MaterialPageRoute(builder: (_) => const HomePage());
+      case '/create':
+        return MaterialPageRoute(builder: (_) => const CreatePage());
       default:
         return errorRoute(args);
     }
@@ -39,7 +42,7 @@ class RouteGenerator {
                   style: TextStyle(fontSize: 26, fontFamily: 'ShortStack'),
                 ),
                 icon: const Icon(Icons.arrow_forward),
-                backgroundColor: Color.fromRGBO(97, 239, 159, 0.612),
+                backgroundColor: const Color.fromRGBO(97, 239, 159, 0.612),
                 foregroundColor: Colors.white,
               )
             ],
