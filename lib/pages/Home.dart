@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:waterbill/pages/Users.dart';
+import 'package:waterbill/utils/GoogleSignIn.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -6,29 +9,42 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: const Color.fromRGBO(124, 102, 236, 100),
       appBar: AppBar(
-        title: const Text('Home Page'),
+        title: const Text('Water Bill Admin Panel'),
         backgroundColor: Colors.blue[700],
+        foregroundColor: Colors.white,
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.logout),
+            tooltip: 'Logout',
+            onPressed: () {
+              final provider = Provider.of<GoogleSignInProvider>(context, listen: false);
+              provider.signOut();
+            },
+          ),
+        ],
       ),
       body: const Center(
-        child: Text('Home Page Content'),
+        child: UsersPage(),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
+            icon: Icon(Icons.group),
+            label: 'Users',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.business),
-            label: 'Business',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            label: 'School',
+            icon: Icon(Icons.analytics),
+            label: 'Analytics',
           ),
         ],
+        onTap: (int index) {
+          if (index == 0) {
+            Navigator.pushNamed(context, '/');
+          } else {
+            Navigator.pushNamed(context, '/analytics');
+          }
+        },
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -37,6 +53,7 @@ class HomePage extends StatelessWidget {
           });
         },
         backgroundColor: Colors.blue,
+        foregroundColor: Colors.white,
         child: const Icon(Icons.create),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,

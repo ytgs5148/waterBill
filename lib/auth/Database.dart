@@ -16,6 +16,7 @@ class Database {
       'excessConsumed': user.excessConsumed,
       'minimumBill': user.minimumBill,
       'dueDate': user.dueDate,
+      'excessBill': user.excessBill,
     });
   }
 
@@ -27,13 +28,37 @@ class Database {
       return User(
         name: user.docs[0]['name'],
         location: user.docs[0]['location'],
-        date: user.docs[0]['date'],
-        readings: user.docs[0]['readings'],
-        usage: user.docs[0]['usage'],
-        excessConsumed: user.docs[0]['excessConsumed'],
-        minimumBill: user.docs[0]['minimumBill'],
-        dueDate: user.docs[0]['dueDate'],
+        date: user.docs[0]['date'].toDate(),
+        readings: Map<String, num>.from(user.docs[0]['readings']),
+        usage: Map<String, num>.from(user.docs[0]['usage']),
+        excessConsumed: Map<String, num>.from(user.docs[0]['excessConsumed']),
+        minimumBill: Map<String, num>.from(user.docs[0]['minimumBill']),
+        dueDate: user.docs[0]['dueDate'].toDate(),
+        excessBill: Map<String, num>.from(user.docs[0]['excessBill']),
       );
     }
+  }
+
+  getUserSnapshots() {
+    return _firestore.collection('users').snapshots();
+  }
+
+  deleteUser(String username) {
+    return _firestore.collection('users').where('name', isEqualTo: username).get().then((snapshot) {
+      snapshot.docs.first.reference.delete();
+    });
+  }
+
+  markPayment(String username, num excessConsumed, num excessBill, num readings, num usage) {
+    String currentMonthYear = '${DateTime.now().month}/${DateTime.now().year}';
+
+    return _firestore.collection('users').where('name', isEqualTo: username).get().then((snapshot) {
+      snapshot.docs.first.reference.update({
+        'excessConsumed': {currentMonthYear: excessConsumed},
+        'excessBill': {currentMonthYear: excessBill},
+        'readings': {currentMonthYear: readings},
+        'usage': {currentMonthYear: usage},
+      });
+    });
   }
 }

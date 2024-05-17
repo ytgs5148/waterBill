@@ -106,7 +106,6 @@ class _CreatePageState extends State<CreatePage> {
                   User? user = await db.doesUserExist(toCamelCase(_nameController.text));
 
                   if (user != null) {
-                    // open a popup and tell them this user already exists
                     showDialog(
                       context: context,
                       builder: (BuildContext context) {
@@ -133,7 +132,8 @@ class _CreatePageState extends State<CreatePage> {
                       usage: {}, 
                       excessConsumed: {}, 
                       dueDate: dueDateSelected, 
-                      minimumBill: { "${currentSelectedDate.month}/${currentSelectedDate.year}": double.parse(_minimumBill.text) }
+                      minimumBill: { "${currentSelectedDate.month}/${currentSelectedDate.year}": double.parse(_minimumBill.text) },
+                      excessBill: {}
                     ));
 
                     // open a poup and say added it 
@@ -149,8 +149,18 @@ class _CreatePageState extends State<CreatePage> {
                                 _nameController.clear();
                                 _locationController.clear();
                                 _minimumBill.clear();
+                                Navigator.pushNamed(context, '/create');
                               },
                               child: const Text('New User'),
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                _nameController.clear();
+                                _locationController.clear();
+                                _minimumBill.clear();
+                                Navigator.pushNamed(context, '/');
+                              },
+                              child: const Text('Close'),
                             ),
                           ],
                         );
@@ -167,6 +177,7 @@ class _CreatePageState extends State<CreatePage> {
                 icon: const Icon(Icons.send),
                 backgroundColor: const Color.fromARGB(255, 0, 0, 0),
                 foregroundColor: Colors.white,
+                splashColor: Colors.grey,
               ),
             ),
           ],

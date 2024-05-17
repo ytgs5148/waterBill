@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:waterbill/pages/CreatePage.dart';
 import 'package:waterbill/pages/Home.dart';
 import 'package:waterbill/pages/LoginPage.dart';
+import 'package:waterbill/pages/PrintPage.dart';
+import 'package:waterbill/pages/UsersPage.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -14,6 +16,10 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const HomePage());
       case '/create':
         return MaterialPageRoute(builder: (_) => const CreatePage());
+      case '/users':
+        return MaterialPageRoute(builder: (_) => UsersPage(data: args, args: args));
+      case '/print':
+        return MaterialPageRoute(builder: (_) => PrintPage(data: args, args: args));
       default:
         return errorRoute(args);
     }
