@@ -1,10 +1,10 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, use_build_context_synchronously, must_be_immutable
 
 import 'dart:ui';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:pdf/pdf.dart';
 import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:waterbill/auth/Database.dart';
@@ -12,6 +12,9 @@ import 'package:waterbill/models/User.dart';
 import 'package:waterbill/utils/Chart.dart';
 import 'package:waterbill/utils/GoogleSignIn.dart';
 import 'package:collection/collection.dart';
+import 'package:waterbill/utils/PDFManager.dart';
+import '../utils/FileHandleAPI.dart';
+import 'package:pdf/widgets.dart' as pw;
 
 class UsersPage extends StatelessWidget {
   final String data;
@@ -25,6 +28,9 @@ class UsersPage extends StatelessWidget {
  
   Database db = Database();
 
+  PdfColor themeColor = PdfColors.black;
+  pw.Font font = pw.Font.courier();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +38,6 @@ class UsersPage extends StatelessWidget {
         title: const Text('Water Bill Admin Panel'),
         backgroundColor: Colors.blue[700],
         foregroundColor: Colors.white,
-        automaticallyImplyLeading: false,
         actions: <Widget>[
           IconButton(
             icon: const Icon(Icons.logout),
@@ -129,8 +134,14 @@ class UsersPage extends StatelessWidget {
                                           content: const Text('The user has already paid for this month'),
                                           actions: <Widget>[
                                             TextButton(
-                                              onPressed: () {
-                                                Navigator.pushNamed(context, '/print', arguments: user.name);
+                                              onPressed: () async {
+                                                final pdfFile = await PdfInvoiceApi.generate(
+                                                  themeColor,
+                                                  pw.Font.courier(),
+                                                  user
+                                                );
+
+                                                FileHandleApi.openFile(pdfFile);
                                               },
                                               child: const Text('Print'),
                                             ),
@@ -223,10 +234,14 @@ class UsersPage extends StatelessWidget {
                                                               content: const Text('The payment has been marked and the user has been notified'),
                                                               actions: <Widget>[
                                                                 TextButton(
-                                                                  onPressed: () {
-                                                                    WidgetsBinding.instance.addPostFrameCallback((_) {
-                                                                      Navigator.pushNamed(context, '/print', arguments: user.name);
-                                                                    });
+                                                                  onPressed: () async {
+                                                                    final pdfFile = await PdfInvoiceApi.generate(
+                                                                      themeColor,
+                                                                      pw.Font.courier(),
+                                                                      user
+                                                                    );
+
+                                                                    FileHandleApi.openFile(pdfFile);
                                                                   },
                                                                   child: const Text('Print'),
                                                                 ),
@@ -373,6 +388,11 @@ class UsersPage extends StatelessWidget {
                                 animationDuration: 2000,
                               )
                             ],
+                            trackballBehavior: TrackballBehavior(
+                              enable: true,
+                              activationMode: ActivationMode.longPress,
+                              shouldAlwaysShow: true,
+                            ),
                           )
                         ],
                       ),
