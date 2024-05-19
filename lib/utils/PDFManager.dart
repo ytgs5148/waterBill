@@ -31,8 +31,8 @@ class PdfInvoiceApi {
 
     final tableData = [
       [
-        '\$ $minimumBill php',
-        '\$ $excessBill php',
+        '$minimumBill php',
+        '$excessBill php',
         '$excessConsumed',
         '$readings',
         '$usage Litres',
@@ -110,16 +110,6 @@ class PdfInvoiceApi {
             ),
             pw.SizedBox(height: 1 * PdfPageFormat.mm),
             pw.Divider(),
-            pw.SizedBox(height: 1 * PdfPageFormat.mm),
-            pw.Text(
-              'Dear ${user.name},\nLorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium optio, eaque rerum! Provident similique accusantium nemo autem. Veritatis obcaecati tenetur iure eius earum ut molestias architecto voluptate aliquam nihil, eveniet aliquid culpa officia aut! Impedit sit sunt quaerat, odit, tenetur error',
-              textAlign: pw.TextAlign.justify,
-              style: pw.TextStyle(
-                fontSize: 14.0,
-                color: color,
-                font: fontFamily,
-              ),
-            ),
             pw.SizedBox(height: 5 * PdfPageFormat.mm),
 
             pw.Table.fromTextArray(
@@ -162,7 +152,7 @@ class PdfInvoiceApi {
                               ),
                             ),
                             pw.Text(
-                              '\$ $totalBill php',
+                              '$totalBill php',
                               style: pw.TextStyle(
                                 fontWeight: pw.FontWeight.bold,
                                 color: color,
@@ -186,7 +176,7 @@ class PdfInvoiceApi {
                               ),
                             ),
                             pw.Text(
-                              '\$ $totalBill php',
+                              '$totalBill php',
                               style: pw.TextStyle(
                                 fontWeight: pw.FontWeight.bold,
                                 color: color,
