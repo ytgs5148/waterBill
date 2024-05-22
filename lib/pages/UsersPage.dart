@@ -5,12 +5,10 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:pdf/pdf.dart';
-import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:waterbill/auth/Database.dart';
 import 'package:waterbill/models/User.dart';
 import 'package:waterbill/utils/Chart.dart';
-import 'package:waterbill/utils/GoogleSignIn.dart';
 import 'package:collection/collection.dart';
 import 'package:waterbill/utils/PDFManager.dart';
 import '../utils/FileHandleAPI.dart';
@@ -43,9 +41,7 @@ class UsersPage extends StatelessWidget {
             icon: const Icon(Icons.logout),
             tooltip: 'Logout',
             onPressed: () {
-              final provider =
-                  Provider.of<GoogleSignInProvider>(context, listen: false);
-              provider.signOut();
+              Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
             },
           ),
         ],

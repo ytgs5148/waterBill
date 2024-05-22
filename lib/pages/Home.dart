@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:waterbill/pages/Users.dart';
-import 'package:waterbill/utils/GoogleSignIn.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -18,8 +16,7 @@ class HomePage extends StatelessWidget {
             icon: const Icon(Icons.logout),
             tooltip: 'Logout',
             onPressed: () {
-              final provider = Provider.of<GoogleSignInProvider>(context, listen: false);
-              provider.signOut();
+              Navigator.pushNamed(context, '/');
             },
           ),
         ],

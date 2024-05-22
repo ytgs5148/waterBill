@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:waterbill/pages/AnalyticsPage.dart';
 import 'package:waterbill/pages/CreatePage.dart';
 import 'package:waterbill/pages/Home.dart';
 import 'package:waterbill/pages/LoginPage.dart';
@@ -17,6 +18,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const CreatePage());
       case '/users':
         return MaterialPageRoute(builder: (_) => UsersPage(data: args, args: args));
+      case '/analytics':
+        return MaterialPageRoute(builder: (_) => const AnalyticsPage());
       default:
         return errorRoute(args);
     }

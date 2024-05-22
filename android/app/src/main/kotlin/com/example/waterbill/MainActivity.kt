@@ -1,4 +1,4 @@
-package com.example.waterbill
+package com.ytgs.waterbill
 
 import io.flutter.embedding.android.FlutterActivity
 

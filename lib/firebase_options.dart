@@ -63,6 +63,6 @@ class DefaultFirebaseOptions {
     messagingSenderId: '197847066715',
     projectId: 'water-bill-e6cfa',
     storageBucket: 'water-bill-e6cfa.appspot.com',
-    iosBundleId: 'com.example.waterbill',
+    iosBundleId: 'com.ytgs.waterbill',
   );
 }
