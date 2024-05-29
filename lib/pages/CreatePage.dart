@@ -158,7 +158,7 @@ class _CreatePageState extends State<CreatePage> {
                                 _nameController.clear();
                                 _locationController.clear();
                                 _minimumBill.clear();
-                                Navigator.pushNamed(context, '/');
+                                Navigator.pushNamed(context, '/home');
                               },
                               child: const Text('Close'),
                             ),

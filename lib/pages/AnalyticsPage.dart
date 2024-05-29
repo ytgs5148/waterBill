@@ -25,7 +25,7 @@ class AnalyticsPage extends StatelessWidget {
         ],
         onTap: (int index) {
           if (index == 0) {
-            Navigator.pushNamed(context, '/');
+            Navigator.pushNamed(context, '/home');
           } else {
             Navigator.pushNamed(context, '/analytics');
           }

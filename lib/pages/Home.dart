@@ -16,7 +16,7 @@ class HomePage extends StatelessWidget {
             icon: const Icon(Icons.logout),
             tooltip: 'Logout',
             onPressed: () {
-              Navigator.pushNamed(context, '/');
+              Navigator.pushNamed(context, '/home');
             },
           ),
         ],
@@ -37,7 +37,7 @@ class HomePage extends StatelessWidget {
         ],
         onTap: (int index) {
           if (index == 0) {
-            Navigator.pushNamed(context, '/');
+            Navigator.pushNamed(context, '/home');
           } else {
             Navigator.pushNamed(context, '/analytics');
           }

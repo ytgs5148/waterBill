@@ -41,7 +41,7 @@ class UsersPage extends StatelessWidget {
             icon: const Icon(Icons.logout),
             tooltip: 'Logout',
             onPressed: () {
-              Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
+              Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
             },
           ),
         ],
@@ -55,7 +55,7 @@ class UsersPage extends StatelessWidget {
                 if (snapshot.connectionState == ConnectionState.active) {
                   if (snapshot.data != null) {
                     if (snapshot.data!.docs.isEmpty) {
-                      Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
+                      Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
                     }
 
                     List<User> users = snapshot.data!.docs.map((DocumentSnapshot document) {
@@ -77,7 +77,7 @@ class UsersPage extends StatelessWidget {
 
                     if (user == null) {
                       WidgetsBinding.instance.addPostFrameCallback((_) {
-                        Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
+                        Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
                       });
                       return const Center(child: Text('User not found'));
                     }
@@ -282,7 +282,7 @@ class UsersPage extends StatelessWidget {
                                         actions: <Widget>[
                                           TextButton(
                                             onPressed: () {
-                                              Navigator.pushNamed(context, '/');
+                                              Navigator.pushNamed(context, '/home');
                                             },
                                             child: const Text('Close'),
                                           ),

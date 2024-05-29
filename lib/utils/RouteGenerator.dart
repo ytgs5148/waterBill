@@ -41,7 +41,7 @@ class RouteGenerator {
               ),
               FloatingActionButton.extended(
                 onPressed: () {
-                  Navigator.pushNamedAndRemoveUntil(_, '/', (route) => false, arguments: args);
+                  Navigator.pushNamedAndRemoveUntil(_, '/home', (route) => false, arguments: args);
                 },
                 label: const Text(
                   'Go Back',

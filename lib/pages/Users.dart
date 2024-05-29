@@ -72,26 +72,24 @@ class _UsersPageState extends State<UsersPage> {
                 
                       return Container(
                         padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
-                        child: Expanded(
-                          child: ListView.builder(
-                            itemCount: sortedByDueDate.length,
-                            itemBuilder: (context, index) {
-                              final user = sortedByDueDate[index];
-                              return Card(
-                                child: ListTile(
-                                  leading: const Icon(Icons.person),
-                                  title: Text(user.name),
-                                  subtitle: Text('Location: ${user.location}\n Due Date In: ${user.dueDate!.difference(DateTime.now()).inDays} days'),
-                                  trailing: IconButton(
-                                    icon: const Icon(Icons.arrow_forward),
-                                    onPressed: () {
-                                      Navigator.pushNamed(context, '/users', arguments: user.name);
-                                    },
-                                  ),
+                        child: ListView.builder(
+                          itemCount: sortedByDueDate.length,
+                          itemBuilder: (context, index) {
+                            final user = sortedByDueDate[index];
+                            return Card(
+                              child: ListTile(
+                                leading: const Icon(Icons.person),
+                                title: Text(user.name),
+                                subtitle: Text('Location: ${user.location}\n Due Date In: ${user.dueDate!.difference(DateTime.now()).inDays} days'),
+                                trailing: IconButton(
+                                  icon: const Icon(Icons.arrow_forward),
+                                  onPressed: () {
+                                    Navigator.pushNamed(context, '/users', arguments: user.name);
+                                  },
                                 ),
-                              );
-                            },
-                          ),
+                              ),
+                            );
+                          },
                         ),
                       );
                     }
