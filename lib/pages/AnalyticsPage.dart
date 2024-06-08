@@ -111,7 +111,7 @@ class AnalyticsPage extends StatelessWidget {
               }
             }
 
-            num percentageIncrease = ((totalMoneyEarntPerMonthYear[currentMonthYear]! - totalMoneyEarntPerMonthYear[previousMonthYear]!) / totalMoneyEarntPerMonthYear[previousMonthYear]!) * 100;
+            num percentageIncrease = ((totalMoneyEarntPerMonthYear[currentMonthYear]! - (totalMoneyEarntPerMonthYear[previousMonthYear] ?? 0)) / (totalMoneyEarntPerMonthYear[previousMonthYear] ?? 0)) * 100;
             num percentageIncreaseReadings = ((readingsPerMonthYear[currentMonthYear]! - (readingsPerMonthYear[previousMonthYear] ?? 0)) / (readingsPerMonthYear[previousMonthYear] ?? 0)) * 100;
             num percentageIncreaseUsage = ((usagePerMonthYear[currentMonthYear]! - usagePerMonthYear[currentMonthYear]!) / usagePerMonthYear[currentMonthYear]!) * 100;
 
@@ -126,6 +126,7 @@ class AnalyticsPage extends StatelessWidget {
               body: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: SingleChildScrollView(
+                  physics: const BouncingScrollPhysics(),
                   child: Column(
                     children: <Widget>[
                       Card(
